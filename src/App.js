@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import dataJson from './data/data.json';
 
 class App extends Component {
   state = {
@@ -13,29 +12,24 @@ class App extends Component {
 
 // get data from json and populate state
   onFetch = () => {
-    let data = [];
-    for (let item of dataJson) {
-      data.push(item);
-    }
-    this.setState({data: data});
+    fetch(`http://api.openweathermap.org/data/2.5/weather?q=Oakland,us&APPID=ef276953c6e59a3037dd6d47154f8e7f`)
+    .then(response => response.json())
+    .then(data => {
+      console.log("data recieved", data);
+      this.setState({
+
+      });
+    });
   }
 
 // change style to show the year with the highets temp
   highTemp = () => {
-    let elem = document.getElementsByClassName("Bar");
-    elem[9].style.backgroundColor = "red";
-    elem[9].style.color = "black";
-    elem[9].style.height = "85%";
-    elem[9].style.transition = "3s";
+    console.log('high temp button working')
   }
 
 // change style to show the year with the lowest temp
   lowTemp = () => {
-    let elem = document.getElementsByClassName("Bar");
-    elem[5].style.backgroundColor = "blue";
-    elem[5].style.color = "black";
-    elem[5].style.height = "53%";
-    elem[5].style.transition = "3s";
+    console.log('low temp button working')
   }
 
   render() {
