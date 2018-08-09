@@ -27,7 +27,7 @@ class App extends Component {
 // change style to show the year with the highets temp
   highTemp = () => {
     console.log('high temp button working');
-    fetch(`http://history.openweathermap.org/data/2.5/history/city?q=London,UK&APPID=ef276953c6e59a3037dd6d47154f8e7f`)
+    fetch(`https://api.darksky.net/forecast/6d00ebd7a82456376461d6b3ee100234/37.7749,-122.4194`)
     .then(response => response.json())
     .then(data => {
       console.log("data recieved", data);
