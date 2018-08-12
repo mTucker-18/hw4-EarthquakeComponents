@@ -11,17 +11,16 @@ class App extends Component {
   }
 
 // get data from json and populate state
-  onFetch = () => {
-    fetch(`http://api.openweathermap.org/data/2.5/weather?q=Oakland,us&APPID=ef276953c6e59a3037dd6d47154f8e7f`)
+  onFetchEffect = () => {
+    fetch(`http://api.otreeba.com/v1/swagger.json`)
     .then(response => response.json())
     .then(data => {
-      console.log("data recieved", data);
-      this.setState({
-
-      });
+      console.log("Effects data recieved", data);
+      // this.setState({
+      //
+      // });
     });
   }
-
 
 
 // change style to show the year with the highets temp
