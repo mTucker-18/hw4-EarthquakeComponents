@@ -11,14 +11,19 @@ class App extends Component {
   }
 
 // get data from json and populate state
-  onFetchEffect = () => {
-    fetch(`http://api.otreeba.com/v1/swagger.json`)
+  onFetch = () => {
+    let quakeArr = [];
+    fetch(`https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2018-08-08&endtime=2018-08-09`)
     .then(response => response.json())
     .then(data => {
-      console.log("Effects data recieved", data);
-      // this.setState({
-      //
-      // });
+      for (let quake of data.features) {
+        if (quake.properties.mag > 4.5)
+          quakeArr.push(quake);
+        }
+      this.setState({
+        data: quakeArr,
+      });
+      console.log(this.state.data);
     });
   }
 
