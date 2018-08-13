@@ -37,7 +37,6 @@ class App extends Component {
       this.setState({
         data: quakeArr,
       });
-      console.log(this.state.data);
     });
   }
 
