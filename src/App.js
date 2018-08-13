@@ -4,6 +4,7 @@ import './App.css';
 class App extends Component {
   state = {
     data: [],
+    searchDate: '07/12/2018',
   }
 
   componentDidMount = () => {
@@ -13,7 +14,15 @@ class App extends Component {
 // get data from json and populate state
   onFetch = () => {
     let quakeArr = [];
-    fetch(`https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2018-08-12&endtime=2018-08-13`)
+
+    // this code takes in the search criteria and adds it to the API fetch
+    let cleanDate = this.state.searchDate.split('/');
+    let month = cleanDate[0];
+    let day = cleanDate[1];
+    let year = cleanDate[2];
+    let endDay = parseInt(cleanDate[1], 10) + 1;
+
+    fetch(`https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=${year}-${month}-${day}&endtime=${year}-${month}-${endDay}`)
     .then(response => response.json())
     .then(data => {
       for (let quake of data.features) {
@@ -27,6 +36,9 @@ class App extends Component {
     });
   }
 
+  inputDate = () => {
+    console.log('search date', this.state.data.searchDate)
+  }
 
 // visits the url of the earthquake event
   eventPage = () => {
@@ -42,7 +54,12 @@ class App extends Component {
         </div>
 
         <div className="Graph-container">
-          <p>4.5 Magnitude or greater event on <input type="date" placeholder="08/12/2018" /></p>
+          <p>Current date displaying is {this.state.searchDate}</p>
+          <p>
+            Search for a 4.5 Magnitude or greater event on
+              <input type="date" />
+              <button onClick={this.inputDate}>Submit</button>
+          </p>
           <p>Click on an event to see more info.</p>
 
           <div className="Graph-bars">
