@@ -13,7 +13,7 @@ class App extends Component {
 // get data from json and populate state
   onFetch = () => {
     let quakeArr = [];
-    fetch(`https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2018-08-08&endtime=2018-08-09`)
+    fetch(`https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2018-08-12&endtime=2018-08-13`)
     .then(response => response.json())
     .then(data => {
       for (let quake of data.features) {
@@ -28,40 +28,28 @@ class App extends Component {
   }
 
 
-// change style to show the year with the highets temp
-  highTemp = () => {
-    console.log('high temp button working');
-    fetch(`https://api.darksky.net/forecast/6d00ebd7a82456376461d6b3ee100234/37.7749,-122.4194`)
-    .then(response => response.json())
-    .then(data => {
-      console.log("data recieved", data);
-      this.setState({
-
-      });
-    });
-  }
-
-// change style to show the year with the lowest temp
-  lowTemp = () => {
-    console.log('low temp button working')
+// visits the url of the earthquake event
+  eventPage = () => {
+    console.log('Event page button working', this.state.data[0].properties.url);
+    window.location.href = this.state.data[0].properties.url;
   }
 
   render() {
     return (
       <div className="Graph">
         <div className="Graph-header">
-  		     <h1>San Francisco Weather Over the Last 10 Years</h1>
+  		     <h1>Large Earthquakes Worldwide</h1>
         </div>
 
         <div className="Graph-container">
-          <p>All records taken on July 15th</p>
-  				<button onClick={this.highTemp}>Highest temp</button>
-  				<button onClick={this.lowTemp}>Lowest temp</button>
+          <p>4.5 Magnitude or greater event on <input type="date" placeholder="08/12/2018" /></p>
+          <p>Click on an event to see more info.</p>
+
           <div className="Graph-bars">
             {
               this.state.data.map(datum => (
-                <div className="Bar" style={{height: datum.avg + "%"}}>
-                  July {datum.year}
+                <div className="Bar" style={{height: datum.properties.mag * 10 + "%"}}>
+                  <p onClick={this.eventPage}> {datum.properties.place} </p>
                 </div>
               ))
             }

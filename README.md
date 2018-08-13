@@ -1,5 +1,5 @@
 # Graphing App with components
 
-1. Data comes from ______ api 
+1. Data comes from USGS api
 
-2. Interact with button components to change data views
+2. Interact with date component to change data views
