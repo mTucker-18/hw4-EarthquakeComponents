@@ -9,18 +9,20 @@ import EventLink from './components/EventLink/EventLink.js';
 class App extends Component {
   state = {
     data: [],
-    searchDate: '07/12/2018',
-  }
+    searchDate: '07/12/2018', //TODO link this to the calendar with a function
+  }                           //so user can edit state in GUI
 
+
+// fetch data upon loading
   componentDidMount = () => {
     this.onFetch();
   }
 
-// get data from json and populate state
+// get data from USGS Earthquake database and populate state
   onFetch = () => {
     let quakeArr = [];
 
-    // this code takes in the search criteria and adds it to the API fetch
+    // takes in the search criteria and adds it to the API fetch
     let cleanDate = this.state.searchDate.split('/');
     let month = cleanDate[0];
     let day = cleanDate[1];
@@ -44,8 +46,8 @@ class App extends Component {
     return (
       <div className="Graph">
         <Header />
-        <InputDate currentDate={this.state.searchDate} />
-        <EventLink data={this.state.data} />
+        <InputDate currentDate={this.state.searchDate} /> //fetch component
+        <EventLink data={this.state.data} /> //onClick USGS website component
       </div>
     );
   }
