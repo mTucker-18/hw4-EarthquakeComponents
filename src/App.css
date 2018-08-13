@@ -7,40 +7,10 @@
   --yellow-green: #e4e9b2;
 }
 
-/* styled whole page here, all according to BEM*/
+/* styled whole page here, all according to BEM */
 .Graph {
   display: grid;
   background-color: var(--off-white);
   grid-template-rows: 20% 80%;
   font-family: 'Lato', sans-serif;
-}
-
-.Graph-header {
-  grid-row: 1;
-  background-color: var(--lavendar);
-  border: 5px solid var(--brown);
-  text-align: center;
-}
-
-.Graph-container {
-  grid-row: 2;
-  border: 5px solid var(--brown);
-  border-top: none;
-}
-
-/* flex inside of grid so I can add more bars later if needs be */
-.Graph-bars {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  height: 600px;
-}
-
-/* This formats each bar */
-.Bar {
-  color: var(--green);
-  background-color: var(--yellow-green);
-  border: 5px solid var(--brown);
-  border-bottom: none;
-  padding: 5px;
 }

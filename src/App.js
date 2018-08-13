@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
 
+import Header from './components/Header/Header.js';
 import InputDate from './components/InputDate/InputDate.js';
 import EventLink from './components/EventLink/EventLink.js';
+
 
 class App extends Component {
   state = {
@@ -42,13 +44,10 @@ class App extends Component {
   render() {
     return (
       <div className="Graph">
-        <div className="Graph-header">
-  		     <h1>Large Earthquakes Worldwide</h1>
-        </div>
+        <Header />
         <InputDate currentDate={this.state.searchDate} />
-        <EventLink data={this.state.data}/>
-
-        </div>
+        <EventLink data={this.state.data} />
+      </div>
     );
   }
 }
