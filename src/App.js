@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 
+import InputDate from './components/InputDate/InputDate.js';
+import EventLink from './components/EventLink/EventLink.js';
+
 class App extends Component {
   state = {
     data: [],
@@ -36,43 +39,16 @@ class App extends Component {
     });
   }
 
-  inputDate = () => {
-    console.log('search date', this.state.data.searchDate)
-  }
-
-// visits the url of the earthquake event
-  eventPage = () => {
-    console.log('Event page button working', this.state.data[0].properties.url);
-    window.location.href = this.state.data[0].properties.url;
-  }
-
   render() {
     return (
       <div className="Graph">
         <div className="Graph-header">
   		     <h1>Large Earthquakes Worldwide</h1>
         </div>
+        <InputDate currentDate={this.state.searchDate} />
+        <EventLink data={this.state.data}/>
 
-        <div className="Graph-container">
-          <p>Current date displaying is {this.state.searchDate}</p>
-          <p>
-            Search for a 4.5 Magnitude or greater event on
-              <input type="date" />
-              <button onClick={this.inputDate}>Submit</button>
-          </p>
-          <p>Click on an event to see more info.</p>
-
-          <div className="Graph-bars">
-            {
-              this.state.data.map(datum => (
-                <div className="Bar" style={{height: datum.properties.mag * 10 + "%"}}>
-                  <p onClick={this.eventPage}> {datum.properties.place} </p>
-                </div>
-              ))
-            }
-          </div>
         </div>
-      </div>
     );
   }
 }
