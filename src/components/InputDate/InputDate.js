@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import EventLink from '../EventLink/EventLink.js';
 import './InputDate.css';
 
 class InputDate extends Component {
@@ -6,7 +7,7 @@ class InputDate extends Component {
   inputDate = () => {
     console.log('search date', this.props.currentDate)
   }
-  
+
   render() {
     return (
       <div className='Graph-container'>
@@ -17,6 +18,7 @@ class InputDate extends Component {
             <button onClick={this.inputDate}>Submit</button>
         </p>
         <p>Click on an event to see more info.</p>
+        <EventLink data={this.props.data} />
       </div>
     );
   }

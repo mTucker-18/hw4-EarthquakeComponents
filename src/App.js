@@ -3,8 +3,6 @@ import './App.css';
 
 import Header from './components/Header/Header.js';
 import InputDate from './components/InputDate/InputDate.js';
-import EventLink from './components/EventLink/EventLink.js';
-
 
 class App extends Component {
   state = {
@@ -46,8 +44,10 @@ class App extends Component {
     return (
       <div className="Graph">
         <Header />
-        <InputDate currentDate={this.state.searchDate} /> //fetch component
-        <EventLink data={this.state.data} /> //onClick USGS website component
+        <InputDate
+          currentDate={this.state.searchDate}
+          data={this.state.data}
+        />
       </div>
     );
   }
